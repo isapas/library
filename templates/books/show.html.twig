@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Books{% endblock %}
+
+{% block body %}
+    <h1>Détail du livre N° {{ book.id }}</h1>
+    <a href="{{ path('books_index') }}">Retour à la liste des livres</a>
+    <table class="col-sm-12 col-md-10 col-lg-10 table mb-5 d-flex justify-content-center text-left flex-wrap">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ book.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ book.title }}</td>
+            </tr>
+            <tr>
+                <th>Catégorie</th>
+                <td>{{ book.category.category }}</td>
+            </tr>
+            <tr>
+                <th>Auteur</th>
+                <td>{{ book.author }}</td>
+            </tr>
+            <tr>
+                <th>Resumé</th>
+                <td>{{ book.resume }}</td>
+            </tr>
+            <tr>
+                <th>Edition</th>
+                <td>{{ book.edition ? book.edition|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date d'emprunt</th>
+                <td>{{ book.borrowDate ? book.borrowDate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Rendu le : </th>
+                <td>{{ book.returnDate ? book.returnDate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Statut</th>
+                <td>{{ book.status }}</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <div class="d-flex flex-row bd-highlight mb-3 justify-content-center">
+    <a class="btn btn-primary ml-5 mr-5" href="{{ path('books_edit', {'id': book.id}) }}">Modifier</a>
+    {{ include('books/_delete_form.html.twig') }}
+    </div>
+{% endblock %}
